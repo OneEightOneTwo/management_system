@@ -5,6 +5,7 @@ const Router = require('koa-router');
 var router = new Router();
 
 router.post('/', (ctx, next) => {
+    //获取前端传过来的数据
     ctx.body = ctx.request.body;
 });
 
