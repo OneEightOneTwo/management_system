@@ -15,7 +15,7 @@ const Koa = require('koa');
 const static = require('koa-static');
 
 // 路由
-const routers = require('./api');
+const routers = require('./api/routers');
 
 // 创建koa应用
 const app = new Koa();
