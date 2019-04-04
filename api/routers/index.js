@@ -7,6 +7,7 @@ var router = new Router();
 
 // 引入页面路由
 const loginRouter = require('./login');
+const orderRouter = require('./order');
 
 //数据格式化
 router.use(koaBody({
@@ -24,6 +25,7 @@ router.use(koaBody({
 
 // 创建路由接口
 router.use('/login', loginRouter.routes());
+router.use('/order', orderRouter.routes());
 
 module.exports = router;
 
