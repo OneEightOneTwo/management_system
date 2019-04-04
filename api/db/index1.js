@@ -75,7 +75,7 @@ exports.update = async (colName, query, newData) => {
 
 /*find 查询
 //  colName:表名
-//  query:条件
+//  query:查询条件
 // 例：find('user',{name:'xiaoming'});
 */
 exports.find = async (colName, query) => {
