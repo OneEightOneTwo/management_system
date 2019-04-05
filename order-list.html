@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="x-admin-sm">
+<html class="x-admin x-admin2">
 
 <head>
   <meta charset="UTF-8">
@@ -20,7 +20,7 @@
   <!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
       <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-1123>
+    <![endif-->
 </head>
 
 <body>
@@ -43,14 +43,14 @@
         <input class="layui-input" placeholder="开始日" name="start" id="start">
         <input class="layui-input" placeholder="截止日" name="end" id="end">
         <div class="layui-input-inline">
-          <select name="contrller">
-            <option>支付状态</option>
-            <option>已支付</option>
-            <option>未支付</option>
+          <select name="contrller" class="shipping_status">
+            <option>发货状态</option>
+            <option>已发货</option>
+            <option>未发货</option>
           </select>
         </div>
         <div class="layui-input-inline">
-          <select name="contrller">
+          <select name="contrller" class="pay_way">
             <option>支付方式</option>
             <option>支付宝</option>
             <option>微信</option>
@@ -58,18 +58,18 @@
           </select>
         </div>
         <div class="layui-input-inline">
-          <select name="contrller">
-            <option value="">订单状态</option>
-            <option value="0">待确认</option>
-            <option value="1">已确认</option>
-            <option value="2">已收货</option>
-            <option value="3">已取消</option>
-            <option value="4">已完成</option>
-            <option value="5">已作废</option>
+          <select name="contrller" class="order_status">
+            <option>订单状态</option>
+            <option>待确认</option>
+            <option>已确认</option>
+            <option>已收货</option>
+            <option>已取消</option>
+            <option>已完成</option>
+            <option>已作废</option>
           </select>
         </div>
-        <input type="text" name="username" placeholder="请输入订单号" autocomplete="off" class="layui-input">
-        <button class="layui-btn" lay-submit="" lay-filter="sreach">
+        <input id="ordernum" type="text" name="username" placeholder="请输入订单号" autocomplete="off" class="layui-input">
+        <button class="layui-btn" lay-submit="" lay-filter="sreach" id="sreach1">
           <i class="layui-icon">&#xe615;</i>
         </button>
       </form>
@@ -103,7 +103,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <!-- <tr>
           <td>
             <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'>
               <i class="layui-icon">&#xe605;</i>
@@ -127,7 +127,7 @@
               <i class="layui-icon">&#xe640;</i>
             </a>
           </td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
     <div class="page">
@@ -187,6 +187,18 @@
         //发异步删除数据
         $(obj).parents("tr").remove();
         layer.msg('已删除!', { icon: 1, time: 1000 });
+        $.ajax({
+          type: 'post',
+          url: '/order',
+          data: {
+            m: 'del',
+            table: 'order',
+            query: id
+          },
+          success: function (str) {
+            console.log(str);
+          }
+        })
       });
     }
 
@@ -200,6 +212,18 @@
         //捉到所有被选中的，发异步进行删除
         layer.msg('删除成功', { icon: 1 });
         $(".layui-form-checked").not('.header').parents('tr').remove();
+        $.ajax({
+          type: 'post',
+          url: '/order',
+          data: {
+            m: 'del',
+            table: 'order',
+            query: data
+          },
+          success: function (str) {
+            console.log(str);
+          }
+        })
       });
     }
   </script>
