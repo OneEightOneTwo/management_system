@@ -13,7 +13,6 @@
 
 const Koa = require('koa');
 const static = require('koa-static');
-
 // 路由
 const routers = require('./api/routers');
 
@@ -24,6 +23,7 @@ const app = new Koa();
 // 创建静态服务
 app.use(static('./'));
 app.use(routers.routes());
+
 
 
 // 监听端口
